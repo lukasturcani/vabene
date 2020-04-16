@@ -1,11 +1,8 @@
 class ValenceTracker:
     def __init__(self, atoms, bonds=()):
         self._atoms = atoms
-        self._valid_valences = {
-            atom_id: tuple(filter(
-                lambda valence: valence > 0,
-                atom.get_valid_valences(),
-            ))
+        self._free_valences = {
+            atom_id: atom.get_max_valence()
             for atom_id, atom in enumerate(atoms)
         }
         self._connected = (
@@ -21,7 +18,7 @@ class ValenceTracker:
     def clone(self):
         clone = self.__class__.__new__(self.__class__)
         clone._atoms = self._atoms
-        clone._valid_valences = dict(self._valid_valences)
+        clone._free_valences = dict(self._free_valences)
         clone._connected = self._connected
         clone._disconnected = self._disconnected
         return clone
@@ -30,18 +27,13 @@ class ValenceTracker:
         return self.clone()._with_bond(bond)
 
     def _with_bond(self, bond):
-
-        def new_valence(valence):
-            return valence - bond.get_order()
-
         connected = {}
         for atom_id in bond.get_atom_ids():
             connected.add(atom_id)
-
-            self._valid_valences[atom_id] = tuple(filter(
-                lambda valence: valence > 0,
-                map(new_valence, self._valid_valences[atom_id]),
-            ))
+            self._free_valences[atom_id] = max(
+                self._free_valences[atom_id] - bond.get_order(),
+                0,
+            )
 
         self._connected |= connected
         self._disconnected ^= connected
@@ -50,21 +42,21 @@ class ValenceTracker:
     def get_ids_with_free_valence(self):
         yield from (
             atom_id
-            for atom_id, valid_valences in self._valid_valences.items()
-            if valid_valences
+            for atom_id, free_valence in self._free_valences.items()
+            if free_valence > 0
         )
 
-    def get_valid_valences(self, atom_id):
-        yield from self._valid_valences[atom_id]
+    def get_free_valence(self, atom_id):
+        return self._free_valences[atom_id]
 
     def get_free_connected(self):
         yield from (
             atom_id for atom_id in self._connected
-            if self._valid_valences[atom_id]
+            if self._free_valence[atom_id] > 0
         )
 
     def has_free_connected(self):
-        return any(map(self._valid_valences.get, self._connected))
+        return any(map(self._free_valences.get, self._connected))
 
     def get_num_disconnected(self):
         return len(self._disconnected)
