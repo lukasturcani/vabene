@@ -37,3 +37,10 @@ Installation
 To get :mod:`vabene`, you can install it with pip::
 
     $ pip install vabene
+
+
+Examples
+--------
+
+There are bunch of examples you can see by clicking on the
+``Next`` button, or looking at the sidebar.
