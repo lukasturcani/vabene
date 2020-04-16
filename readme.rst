@@ -26,7 +26,6 @@ Simple Example
 This is a quick demonstration of the API, look at the docs for more
 detailed examples
 
-
 .. code-block:: python
 
     import vabene as vb
@@ -34,6 +33,7 @@ detailed examples
     atom_factory = vb.RandomAtomFactory(
         # The atoms, which are randomly picked for use in our molecular
         # graph. Each atom can be picked multiple times.
+        # vb.Atom(atomic_number, charge, max_allowed_valence)
         atoms=(vb.Atom(6, 0, 4), vb.Atom(7, 0, 3)),
         # The total number of atoms the factory will produce.
         num_atoms=10,
@@ -47,3 +47,9 @@ detailed examples
 
     # Our molecular graph.
     molecule = vb.Molecule(atoms, bonds)
+
+----
+
+Other atom and bond factories will be added in the future. For example,
+factories which can be used to produce an exhaustive set of possible
+molecular graphs, fulfilling user-defined restrictions.
