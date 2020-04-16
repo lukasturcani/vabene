@@ -4,6 +4,8 @@ Molecule
 
 """
 
+from .utilities import dedupe
+
 
 class Molecule:
     """
@@ -20,13 +22,17 @@ class Molecule:
         atoms : :class:`tuple` of :class:`.Atom`
             The atoms of the molecule.
 
-        bonds : :class: tuple` of :class:`.Bond`
+        bonds : :class:`iterable` of :class:`.Bond`
             The bonds of the molecule.
 
         """
 
         self._atoms = atoms
-        self._bonds = bonds
+
+        def get_atom_ids(bond):
+            return frozenset(bond.get_atom_ids())
+
+        self._bonds = tuple(dedupe(bonds, get_key=get_atom_ids))
 
     def get_atoms(self, atom_ids=None):
         """
