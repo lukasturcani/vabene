@@ -52,4 +52,4 @@ detailed examples
 
 Other atom and bond factories will be added in the future. For example,
 factories which can be used to produce an exhaustive set of possible
-molecular graphs, fulfilling user-defined restrictions.
+molecular graphs, which fulfill user-defined restrictions.
