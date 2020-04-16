@@ -71,13 +71,20 @@ class RandomBondFactory(BondFactory):
             atom1_id = self._generator.choice(
                 seq=tuple(valence_tracker.get_free_connected()),
             )
+            atom1_free_valence = (
+                valence_tracker.get_free_valence(atom1_id)
+            )
+
             atom2_id = self._generator.choice(
                 seq=tuple(valence_tracker.get_disconnected()),
             )
+            atom2_free_valence = (
+                valence_tracker.get_free_valence(atom2_id)
+            )
             orders = tuple(
-                set(range(valence_tracker.get_free_valence(atom1_id)))
+                set(range(1, atom1_free_valence+1))
                 &
-                set(range(valence_tracker.get_free_valence(atom2_id)))
+                set(range(1, atom2_free_valence+1))
             )
             order = self._generator.choice(orders)
             bond = Bond(atom1_id, atom2_id, order)
@@ -100,10 +107,16 @@ class RandomBondFactory(BondFactory):
                 population=free_connected,
                 k=2,
             )
+            atom1_free_valence = (
+                valence_tracker.get_free_valence(atom1_id)
+            )
+            atom2_free_valence = (
+                valence_tracker.get_free_valence(atom2_id)
+            )
             orders = tuple(
-                set(range(valence_tracker.get_free_valence(atom1_id)))
+                set(range(1, atom1_free_valence+1))
                 &
-                set(range(valence_tracker.get_free_valence(atom2_id)))
+                set(range(1, atom2_free_valence+1))
             )
             order = self._generator.choice(orders)
             bond = Bond(atom1_id, atom2_id, order)
