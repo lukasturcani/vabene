@@ -2,11 +2,6 @@
 Atom Factory
 ============
 
-.. toctree::
-    :maxdepth: 2
-
-    Random Atom Factory <vabene.atom.factories.random_atom.factory>
-
 """
 
 
