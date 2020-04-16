@@ -37,7 +37,7 @@ class ValenceTracker:
             )
 
         self._connected |= connected
-        self._disconnected ^= connected
+        self._disconnected -= connected
         return self
 
     def get_ids_with_free_valence(self):
