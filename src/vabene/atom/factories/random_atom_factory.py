@@ -4,7 +4,7 @@ Random Atom Factory
 
 """
 
-import numpy as np
+import random
 import itertools as it
 
 from .atom_factory import AtomFactory
@@ -45,13 +45,17 @@ class RandomAtomFactory(AtomFactory):
 
         """
 
+        self._atoms = atoms
         self._num_atoms = num_atoms
         self._required_atoms = required_atoms
-        self._generator = np.random.RandomState(random_seed)
+        self._generator = random.Random(random_seed)
 
     def get_atoms(self):
         yield from it.islice(self._required_atoms, self._num_atoms)
 
         num_atoms = self._num_atoms - self._required_atoms
         if num_atoms > 0:
-            yield from self._generator.choice(self._atoms, num_atoms)
+            yield from self._generator.choices(
+                population=self._atoms,
+                k=num_atoms,
+            )
