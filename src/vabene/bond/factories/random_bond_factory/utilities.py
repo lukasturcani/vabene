@@ -27,7 +27,7 @@ class ValenceTracker:
         return self.clone()._with_bond(bond)
 
     def _with_bond(self, bond):
-        connected = {}
+        connected = set()
         for atom_id in bond.get_atom_ids():
             connected.add(atom_id)
             self._free_valences[atom_id] = max(
