@@ -54,7 +54,7 @@ class RandomAtomFactory(AtomFactory):
         yield from it.islice(self._required_atoms, self._num_atoms)
 
         num_atoms = self._num_atoms - len(self._required_atoms)
-        if num_atoms > 0:
+        if num_atoms > 0 and self._atoms:
             yield from self._generator.choices(
                 population=self._atoms,
                 k=num_atoms,
