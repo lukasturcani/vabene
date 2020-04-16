@@ -9,6 +9,8 @@
 :Author: Lukas Turcani
 :Documentation: https://vabene.readthedocs.io
 
+.. image:: https://i.imgur.com/ifNvkO4.jpg
+
 Vabene
 ======
 

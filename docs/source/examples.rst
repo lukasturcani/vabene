@@ -114,7 +114,7 @@ yield these atoms
     atoms = tuple(atom_factory.get_atoms())
 
 
-Next, lets create a `.RandomBondFactory`, which force to yield the
+Next, lets create a :class:`.RandomBondFactory`, which force to yield the
 necessary bond, as well as other, random, bonds
 
 

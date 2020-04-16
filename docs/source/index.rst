@@ -29,7 +29,10 @@ Introduction
 GitHub: https://www.github.com/lukasturcani/vabene
 
 :mod:`vabene` is a Python library for creating molecular graphs,
-which obey user-defined valence restrictions.
+which obey user-defined valence restrictions. For example:
+
+.. image:: https://i.imgur.com/ifNvkO4.jpg
+
 
 Installation
 ------------
