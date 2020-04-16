@@ -84,3 +84,14 @@ class Bond:
         """
 
         return self._order
+
+    def __repr__(self):
+        return (
+            f'{self.__class__.__name__}('
+            f'{self._atom1_id}, {self._atom2_id}, '
+            f'{self._order}'
+            ')'
+        )
+
+    def __str__(self):
+        return repr(self)
