@@ -33,7 +33,7 @@ detailed examples
     atom_factory = vb.RandomAtomFactory(
         # The atoms, which are randomly picked for use in our molecular
         # graph. Each atom can be picked multiple times.
-        # vb.Atom(atomic_number, charge, max_allowed_valence)
+        # vb.Atom(atomic_number, charge, max_valence)
         atoms=(vb.Atom(6, 0, 4), vb.Atom(7, 0, 3)),
         # The total number of atoms the factory will produce.
         num_atoms=10,
