@@ -11,6 +11,10 @@ class BondFactory:
 
     """
 
+    # Keep empty __init__() to hide ugly default docstring.
+    def __init__(self):
+        """"""
+
     def get_bonds(self, atoms):
         """
         Yield the bonds of a molecule.
