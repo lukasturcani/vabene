@@ -1,1 +1,1 @@
-from .molecule import *  # noqa
+from .molecule import Molecule  # noqa
