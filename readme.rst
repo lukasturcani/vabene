@@ -1,3 +1,5 @@
+.. image:: https://travis-ci.com/lukasturcani/vabene.svg?branch=master
+
 :Author: Lukas Turcani
 :Documentation: https:://vabene.readthedocs.io
 
