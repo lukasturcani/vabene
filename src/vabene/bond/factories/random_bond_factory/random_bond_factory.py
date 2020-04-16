@@ -96,7 +96,7 @@ class RandomBondFactory(BondFactory):
             if len(free_connected) < 2:
                 return
 
-            atom1_id, atom2_id = self._generator.choices(
+            atom1_id, atom2_id = self._generator.sample(
                 population=free_connected,
                 k=2,
             )
