@@ -13,7 +13,6 @@ class ValenceTracker:
             if bonds
             else frozenset(range(1, len(atoms)))
         )
-
         for bond in bonds:
             self._with_bond(bond)
 
