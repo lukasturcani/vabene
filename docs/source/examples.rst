@@ -59,8 +59,8 @@ Yours will be different, because we didn't set a random seed.
 However, you can use the `random_seed` parameter on the factories to
 get reproducible results.
 
-Forcing Atoms to be Present in Random Graphs
---------------------------------------------
+Forcing Atoms to be Present in Random Molecular Graphs
+------------------------------------------------------
 
 Sometimes, we want to have a random molecular graph, subject to the
 constraint that it is guaranteed to include a specific atom, or
@@ -85,8 +85,8 @@ group of atoms. The `required_atoms` parameter of the
     atoms = tuple(atom_factory.get_atoms())
 
 
-Forcing Bonds to be Present in Random Graphs
---------------------------------------------
+Forcing Bonds to be Present in Random Molecular Graphs
+------------------------------------------------------
 
 Sometimes, we want to have a random molecular graph, but we want to
 force it to have a certain substructure. For example, let's assume
