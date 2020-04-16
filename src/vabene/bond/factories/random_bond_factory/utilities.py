@@ -52,7 +52,7 @@ class ValenceTracker:
     def get_free_connected(self):
         yield from (
             atom_id for atom_id in self._connected
-            if self._free_valence[atom_id] > 0
+            if self._free_valences[atom_id] > 0
         )
 
     def has_free_connected(self):
