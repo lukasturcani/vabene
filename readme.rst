@@ -23,7 +23,7 @@ obey user-defined valence restrictions. You can install it with::
 Simple Example
 ---------------
 
-This is a quick demonstartion of the API, look at the docs for more
+This is a quick demonstration of the API, look at the docs for more
 detailed examples
 
 
