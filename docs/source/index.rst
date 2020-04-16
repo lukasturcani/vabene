@@ -1,5 +1,12 @@
 .. toctree::
     :hidden:
+    :caption: vabene
+    :maxdepth: 2
+
+    Examples <examples>
+
+.. toctree::
+    :hidden:
     :caption: Atom Factories
     :maxdepth: 2
 
