@@ -11,7 +11,7 @@ class Atom:
 
     """
 
-    def __init__(self, atomic_number, charge, valid_valences):
+    def __init__(self, atomic_number, charge, max_valence):
         """
         Initialize an :class:`.Atom` instance.
 
@@ -23,14 +23,14 @@ class Atom:
         charge : :class:`int`
             The formal charge of the atom.
 
-        valid_valences : :class:`frozenset` of :class:`int`
-            The valences the atom is allowed to have.
+        max_valence : :class:`int`
+            The maximum valence the atom is allowed to have.
 
         """
 
         self._atomic_number = atomic_number
         self._charge = charge
-        self._valid_valences = valid_valences
+        self._max_valence = max_valence
 
     def get_atomic_number(self):
         """
@@ -58,15 +58,15 @@ class Atom:
 
         return self._charge
 
-    def get_valid_valences(self):
+    def get_max_valence(self):
         """
-        Return the valences the atom is allowed to have.
+        Return the maximum valence the atom is allowed to have.
 
         Returns
         -------
-        :class:`frozenset` of :class:`int`
-            The valences the atom is allowed to have.
+        :class:`int`
+            The maximum valence the atom is allowed to have.
 
         """
 
-        return self._valid_valences
+        return self._max_valence
