@@ -4,6 +4,8 @@
 .. image:: https://readthedocs.org/projects/vabene/badge/?version=latest
     :target: https://vabene.readthedocs.io
 
+----
+
 :Author: Lukas Turcani
 :Documentation: https://vabene.readthedocs.io
 
