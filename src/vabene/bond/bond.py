@@ -7,7 +7,7 @@ Bond
 
 class Bond:
     """
-    A bond of a molecule.
+    A bond of a :class:`.Molecule`.
 
     """
 
@@ -57,6 +57,20 @@ class Bond:
         """
 
         return self._atom2_id
+
+    def get_atom_ids(self):
+        """
+        Yield the ids of the atoms of the bond.
+
+        Yields
+        ------
+        :class:`int`
+            An atom id.
+
+        """
+
+        yield self._atom1_id
+        yield self._atom2_id
 
     def get_order(self):
         """
