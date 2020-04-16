@@ -47,4 +47,4 @@ def _test_get_atoms(atom_factory, atoms):
     ):
         assert atom1.get_atomic_number() == atom2.get_atomic_number()
         assert atom1.get_charge() == atom2.get_charge()
-        assert atom1.get_valid_valences() == atom2.get_valid_valences()
+        assert atom1.get_max_valence() == atom2.get_max_valence()
