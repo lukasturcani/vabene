@@ -6,10 +6,12 @@ class ValenceTracker:
             for atom_id, atom in enumerate(atoms)
         }
         self._connected = (
-            frozenset() if bonds else frozenset(atoms[0:1])
+            frozenset() if bonds else frozenset({0})
         )
         self._disconnected = (
-            frozenset(atoms) if bonds else frozenset(atoms[1:])
+            frozenset(range(len(atoms)))
+            if bonds
+            else frozenset(range(1, len(atoms)))
         )
 
         for bond in bonds:
