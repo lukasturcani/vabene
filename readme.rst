@@ -2,7 +2,7 @@
     :target: https://travis-ci.com/github/lukasturcani/vabene
 
 :Author: Lukas Turcani
-:Documentation: https:://vabene.readthedocs.io
+:Documentation: https://vabene.readthedocs.io
 
 Vabene
 ======
