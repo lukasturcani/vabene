@@ -2,6 +2,13 @@
 Bond Factory
 ============
 
+.. toctree::
+    :maxdepth: 2
+
+    Random Bond Factory <\
+vabene.bond.factories.random_bond_factory.random_bond_factory\
+>
+
 """
 
 
