@@ -21,7 +21,7 @@ class RandomBondFactory(BondFactory):
 
     def __init__(
         self,
-        max_internal_bonds=10,
+        max_internal_bonds=4,
         required_bonds=(),
         random_seed=None,
     ):
