@@ -4,7 +4,7 @@ Random Bond Factory
 
 """
 
-import numpy as np
+import random
 
 from .utilities import ValenceTracker
 from ..bond_factory import BondFactory
@@ -47,7 +47,7 @@ class RandomBondFactory(BondFactory):
 
         self._max_internal_bonds = max_internal_bonds
         self._required_bonds = required_bonds
-        self._generator = np.random.RandomState(random_seed)
+        self._generator = random.Random(random_seed)
 
     def get_bonds(self, atoms):
         yield from self._required_bonds
@@ -69,10 +69,10 @@ class RandomBondFactory(BondFactory):
             valence_tracker.get_num_disconnected() > 0
         ):
             atom1_id = self._generator.choice(
-                a=tuple(valence_tracker.get_free_connected()),
+                seq=tuple(valence_tracker.get_free_connected()),
             )
             atom2_id = self._generator.choice(
-                a=tuple(valence_tracker.get_disconnected()),
+                seq=tuple(valence_tracker.get_disconnected()),
             )
             orders = tuple(
                 set(range(valence_tracker.get_free_valence(atom1_id)))
@@ -86,8 +86,8 @@ class RandomBondFactory(BondFactory):
 
         # Add bonds between connected atoms to form rings.
         num_internal_bonds = self._generator.randint(
-            low=0,
-            high=self._max_internal_bonds+1,
+            a=0,
+            b=self._max_internal_bonds,
         )
         for i in range(num_internal_bonds):
             free_connected = tuple(
@@ -96,10 +96,9 @@ class RandomBondFactory(BondFactory):
             if len(free_connected) < 2:
                 return
 
-            atom1_id, atom2_id = self._generator.choice(
-                a=free_connected,
-                size=2,
-                replace=False,
+            atom1_id, atom2_id = self._generator.choices(
+                population=free_connected,
+                k=2,
             )
             orders = tuple(
                 set(range(valence_tracker.get_free_valence(atom1_id)))
