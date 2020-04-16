@@ -3,7 +3,7 @@ extensions = [
     'sphinx.ext.imgmath',
     'sphinx.ext.githubpages',
     'sphinx.ext.napoleon',
-    'sphinex.ext.viewcode',
+    'sphinx.ext.viewcode',
     'numpydoc',
 ]
 autodoc_default_options = {
