@@ -49,6 +49,5 @@ def _test_get_bonds(bond_factory, atoms, bonds):
         bond_factory.get_bonds(atoms),
         bonds,
     ):
-        assert bond1.get_atom1_id() == bond2.get_atom1_id()
-        assert bond1.get_atom2_id() == bond2.get_atom2_id()
+        assert set(bond1.get_atom_ids()) == set(bond2.get_atom_ids())
         assert bond1.get_order() == bond2.get_order()
