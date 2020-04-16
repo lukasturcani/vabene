@@ -73,7 +73,7 @@ group of atoms. The `required_atoms` parameter of the
 
     atom_factory = vb.RandomAtomFactory(
         atoms=(vb.Atom(6, 0, 4), vb.Atom(7, 0, 3)),
-        # The factory is guaranteed to produce these atom every time
+        # The factory is guaranteed to produce these atoms every time
         # get_atoms() is called. These atoms will not be included in
         # the random selection, unless they were provided to the
         # "atoms" parameter too.
@@ -131,9 +131,15 @@ necessary bond, as well as other, random, bonds
             vb.Bond(3, 4, 1),
         ),
     )
-    bonds = bond_factory.get_bonds()
+    bonds = bond_factory.get_bonds(atoms)
 
 Finally, we can make a random :class:`.Molecule`, which is guaranteed
-to have the ``BrCCCBr`` substructure. Here is the one I got:
+to have the ``BrCCCBr`` substructure
+
+.. code-block:: python
+
+    molecule = vb.Molecule(atoms, bonds)
+
+Here is the one I got:
 
 .. image::
