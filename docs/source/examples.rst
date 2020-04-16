@@ -52,7 +52,7 @@ Now that we have our atoms and bonds, we can make a
 
 Done. You made a molecule that looks something like this
 
-.. image::
+.. image:: https://i.imgur.com/uOnWFce.png
 
 
 Yours will be different, because we didn't set a random seed.
@@ -142,4 +142,4 @@ to have the ``BrCCCBr`` substructure
 
 Here is the one I got:
 
-.. image::
+.. image:: https://i.imgur.com/mU4ssGN.png
