@@ -1,20 +1,20 @@
-extensions = [
+extensions = (
     'sphinx.ext.autodoc',
     'sphinx.ext.imgmath',
     'sphinx.ext.githubpages',
     'sphinx.ext.napoleon',
     'sphinex.ext.viewcode',
     'numpydoc',
-]
+)
 autodoc_default_options = {
     'special-members': '__init__',
     'inherited-members': True,
     'show-inheritance': True,
 }
 add_module_names = False
-templates_path = [
+templates_path = (
     '_templates',
-]
+)
 source_suffix = '.rst'
 master_doc = 'index'
 project = 'vabene'
@@ -23,47 +23,47 @@ author = 'Lukas Turcani'
 version = ''
 release = ''
 language = None
-exclude_patterns = []
+exclude_patterns = ()
 pygments_style = 'sphinx'
 todo_include_todos = False
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'collapse_navigation': False,
 }
-html_static_path = [
+html_static_path = (
     '_static',
-]
+)
 html_sidebars = {
-    '**': [
+    '**': (
         'about.html',
         'navigation.html',
         'relations.html',
         'searchbox.html',
         'donate.html',
-    ],
+    ),
 }
 htmlhelp_basename = 'vabenedoc'
 latex_elements = {}
-latex_documents = [
-    [
+latex_documents = (
+    (
         master_doc,
         'vabene.tex',
         'vabene Documentation',
         'Lukas Turcani',
         'manual',
-    ],
-]
-man_pages = [
-    [
+    ),
+)
+man_pages = (
+    (
         master_doc,
         'vabene',
         'vabene Documentation',
-        [author, ],
+        (author, ),
         1,
-    ],
-]
-texinfo_documents = [
-    [
+    ),
+)
+texinfo_documents = (
+    (
         master_doc,
         'vabene',
         'vabene Documentation',
@@ -74,5 +74,5 @@ texinfo_documents = [
             'valence.'
         ),
         'Miscellaneous',
-    ],
-]
+    ),
+)
