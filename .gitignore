@@ -1,0 +1,5 @@
+dist
+src/vabene.egg-info
+
+**/__pycache__
+docs/build
