@@ -99,7 +99,7 @@ class RandomBondFactory(BondFactory):
                 valence_tracker.get_free_connected()
             )
             if len(free_connected) < 2:
-                return
+                break
 
             atom1_id, atom2_id = self._generator.sample(
                 population=free_connected,
@@ -136,7 +136,7 @@ class RandomBondFactory(BondFactory):
                     atom2_id=bond.get_atom2_id(),
                     order=order,
                 )
-                valence_tracker.with_bond(bond)
+                valence_tracker = valence_tracker.with_bond(bond)
                 bond_key = frozenset(
                     (bond.get_atom1_id(), bond.get_atom2_id())
                 )
