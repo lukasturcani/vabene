@@ -73,6 +73,8 @@ class RandomBondFactory(BondFactory):
         # set 2. Yield a bond between these two atoms, and transfer
         # the atom from set 2 into set 1. Repeat this process until
         # set 2 is empty.
+
+        bonds = {}
         while (
             valence_tracker.has_free_connected() and
             valence_tracker.get_num_disconnected() > 0
@@ -80,27 +82,12 @@ class RandomBondFactory(BondFactory):
             atom1_id = self._generator.choice(
                 seq=tuple(valence_tracker.get_free_connected()),
             )
-            atom1_free_valence = min(
-                valence_tracker.get_free_valence(atom1_id),
-                self._max_bond_order,
-            )
-
             atom2_id = self._generator.choice(
                 seq=tuple(valence_tracker.get_disconnected()),
             )
-            atom2_free_valence = min(
-                valence_tracker.get_free_valence(atom2_id),
-                self._max_bond_order,
-            )
-            orders = tuple(
-                set(range(1, atom1_free_valence+1))
-                &
-                set(range(1, atom2_free_valence+1))
-            )
-            order = self._generator.choice(orders)
-            bond = Bond(atom1_id, atom2_id, order)
+            bond = Bond(atom1_id, atom2_id, 1)
+            bonds[frozenset((atom1_id, atom2_id))] = bond
             valence_tracker = valence_tracker.with_bond(bond)
-            yield bond
 
         # Add bonds between connected atoms to form rings.
         num_internal_bonds = self._generator.randint(
@@ -118,20 +105,45 @@ class RandomBondFactory(BondFactory):
                 population=free_connected,
                 k=2,
             )
+            bond = Bond(atom1_id, atom2_id, 1)
+            bonds[frozenset((atom1_id, atom2_id))] = bond
+            valence_tracker = valence_tracker.with_bond(bond)
+
+        # Increase the valence of a random number of bonds, by a
+        # random amount.
+        num_incremented = self._generator.randint(0, len(bonds))
+        for bond in self._generator.sample(
+            population=list(bonds.values()),
+            k=num_incremented,
+        ):
             atom1_free_valence = min(
-                valence_tracker.get_free_valence(atom1_id),
-                self._max_bond_order,
+                valence_tracker.get_free_valence(bond.get_atom1_id()),
+                self._max_bond_order-1,
             )
             atom2_free_valence = min(
-                valence_tracker.get_free_valence(atom2_id),
-                self._max_bond_order,
+                valence_tracker.get_free_valence(bond.get_atom2_id()),
+                self._max_bond_order-1,
             )
-            orders = tuple(
-                set(range(1, atom1_free_valence+1))
-                &
-                set(range(1, atom2_free_valence+1))
-            )
-            order = self._generator.choice(orders)
-            bond = Bond(atom1_id, atom2_id, order)
-            valence_tracker = valence_tracker.with_bond(bond)
-            yield bond
+            if atom1_free_valence and atom2_free_valence:
+                orders = tuple(
+                    set(range(1, atom1_free_valence+1))
+                    &
+                    set(range(1, atom2_free_valence+1))
+                )
+                order = self._generator.choice(orders)
+                bond = Bond(
+                    atom1_id=bond.get_atom1_id(),
+                    atom2_id=bond.get_atom2_id(),
+                    order=order,
+                )
+                valence_tracker.with_bond(bond)
+                bond_key = frozenset(
+                    (bond.get_atom1_id(), bond.get_atom2_id())
+                )
+                bonds[bond_key] = Bond(
+                    atom1_id=bond.get_atom1_id(),
+                    atom2_id=bond.get_atom2_id(),
+                    order=order+1,
+                )
+
+        yield from bonds.values()
