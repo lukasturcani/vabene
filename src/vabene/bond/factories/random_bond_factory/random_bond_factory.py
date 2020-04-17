@@ -23,6 +23,7 @@ class RandomBondFactory(BondFactory):
         self,
         max_internal_bonds=4,
         required_bonds=(),
+        max_bond_order=None,
         random_seed=None,
     ):
         """
@@ -40,6 +41,11 @@ class RandomBondFactory(BondFactory):
             Bonds, which must be yielded by each
             :meth:`~.BondFactory.get_bonds` call.
 
+        max_bond_order : :class:`int`
+            The maximum bond order the factory can make. If
+            ``None`` the maximum will be the maximum shared valence
+            between the two atoms.
+
         random_seed : :class:`int`, optional
             The random seed to use.
 
@@ -47,6 +53,9 @@ class RandomBondFactory(BondFactory):
 
         self._max_internal_bonds = max_internal_bonds
         self._required_bonds = required_bonds
+        self._max_bond_order = (
+            float('inf') if max_bond_order is None else max_bond_order
+        )
         self._generator = random.Random(random_seed)
 
     def get_bonds(self, atoms):
@@ -71,15 +80,17 @@ class RandomBondFactory(BondFactory):
             atom1_id = self._generator.choice(
                 seq=tuple(valence_tracker.get_free_connected()),
             )
-            atom1_free_valence = (
-                valence_tracker.get_free_valence(atom1_id)
+            atom1_free_valence = min(
+                valence_tracker.get_free_valence(atom1_id),
+                self._max_bond_order,
             )
 
             atom2_id = self._generator.choice(
                 seq=tuple(valence_tracker.get_disconnected()),
             )
-            atom2_free_valence = (
-                valence_tracker.get_free_valence(atom2_id)
+            atom2_free_valence = min(
+                valence_tracker.get_free_valence(atom2_id),
+                self._max_bond_order,
             )
             orders = tuple(
                 set(range(1, atom1_free_valence+1))
@@ -107,11 +118,13 @@ class RandomBondFactory(BondFactory):
                 population=free_connected,
                 k=2,
             )
-            atom1_free_valence = (
-                valence_tracker.get_free_valence(atom1_id)
+            atom1_free_valence = min(
+                valence_tracker.get_free_valence(atom1_id),
+                self._max_bond_order,
             )
-            atom2_free_valence = (
-                valence_tracker.get_free_valence(atom2_id)
+            atom2_free_valence = min(
+                valence_tracker.get_free_valence(atom2_id),
+                self._max_bond_order,
             )
             orders = tuple(
                 set(range(1, atom1_free_valence+1))
