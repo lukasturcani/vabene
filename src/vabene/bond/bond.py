@@ -9,25 +9,20 @@ class Bond:
     """
     A bond of a :class:`.Molecule`.
 
+    Parameters
+    ----------
+    atom1_id : :class:`int`
+        The id of the first atom of the bond.
+
+    atom1_id : :class:`int`
+        The id of the second atom of the bond.
+
+    order : :class:`int`
+        The order of the bond.
+
     """
 
     def __init__(self, atom1_id, atom2_id, order):
-        """
-        Initialize a :class:`.Bond` instance.
-
-        Parameters
-        ----------
-        atom1_id : :class:`int`
-            The id of the first atom of the bond.
-
-        atom1_id : :class:`int`
-            The id of the second atom of the bond.
-
-        order : :class:`int`
-            The order of the bond.
-
-        """
-
         self._atom1_id = atom1_id
         self._atom2_id = atom2_id
         self._order = order

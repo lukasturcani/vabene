@@ -11,22 +11,17 @@ class Molecule:
     """
     A molecular graph.
 
+    Parameters
+    ----------
+    atoms : :class:`tuple` of :class:`.Atom`
+        The atoms of the molecule.
+
+    bonds : :class:`iterable` of :class:`.Bond`
+        The bonds of the molecule.
+
     """
 
     def __init__(self, atoms, bonds):
-        """
-        Initialize a :class:`.Molecule` instance.
-
-        Parameters
-        ----------
-        atoms : :class:`tuple` of :class:`.Atom`
-            The atoms of the molecule.
-
-        bonds : :class:`iterable` of :class:`.Bond`
-            The bonds of the molecule.
-
-        """
-
         self._atoms = atoms
 
         def get_atom_ids(bond):

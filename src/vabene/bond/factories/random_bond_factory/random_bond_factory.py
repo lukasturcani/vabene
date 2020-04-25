@@ -17,6 +17,26 @@ class RandomBondFactory(BondFactory):
 
     The bonds yielded will not necessarily create a single molecule.
 
+    Parameters
+    ----------
+    max_internal_bonds : :class:`int`, optional
+        Once all atoms have been connected into a single molecule,
+        the factory will create a random number of internal bonds
+        between atoms in the molecule. This sets the maximum number
+        of such bonds.
+
+    required_bonds : :class:`tuple` of :class:`.Bond`
+        Bonds, which must be yielded by each
+        :meth:`~.BondFactory.get_bonds` call.
+
+    max_bond_order : :class:`int`
+        The maximum bond order the factory can make. If
+        ``None`` the maximum will be the maximum shared valence
+        between the two atoms.
+
+    random_seed : :class:`int`, optional
+        The random seed to use.
+
     """
 
     def __init__(
@@ -26,31 +46,6 @@ class RandomBondFactory(BondFactory):
         max_bond_order=None,
         random_seed=None,
     ):
-        """
-        Initialize a :class:`.RandomBondFactory` instance.
-
-        Parameters
-        ----------
-        max_internal_bonds : :class:`int`, optional
-            Once all atoms have been connected into a single molecule,
-            the factory will create a random number of internal bonds
-            between atoms in the molecule. This sets the maximum number
-            of such bonds.
-
-        required_bonds : :class:`tuple` of :class:`.Bond`
-            Bonds, which must be yielded by each
-            :meth:`~.BondFactory.get_bonds` call.
-
-        max_bond_order : :class:`int`
-            The maximum bond order the factory can make. If
-            ``None`` the maximum will be the maximum shared valence
-            between the two atoms.
-
-        random_seed : :class:`int`, optional
-            The random seed to use.
-
-        """
-
         self._max_internal_bonds = max_internal_bonds
         self._required_bonds = required_bonds
         self._max_bond_order = (

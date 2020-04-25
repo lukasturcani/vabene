@@ -7,7 +7,6 @@ extensions = [
     'numpydoc',
 ]
 autodoc_default_options = {
-    'special-members': '__init__',
     'inherited-members': True,
     'show-inheritance': True,
 }

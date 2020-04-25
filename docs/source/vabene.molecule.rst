@@ -12,3 +12,4 @@ Submodules
 .. toctree::
 
    vabene.molecule.molecule
+   vabene.molecule.utilities
