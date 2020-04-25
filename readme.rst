@@ -12,6 +12,9 @@ Vabene
 .. image:: https://readthedocs.org/projects/vabene/badge/?version=latest
     :target: https://vabene.readthedocs.io
 
+.. image:: https://img.shields.io/lgtm/grade/python/g/lukasturcani/vabene.svg?logo=lgtm&logoWidth=18)
+    :target: https://lgtm.com/projects/g/lukasturcani/vabene
+
 ----
 
 ``vabene`` is a Python library for creating molecular graphs, which
