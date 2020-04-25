@@ -4,6 +4,8 @@ Atom Factory
 
 """
 
+__all__ = ('AtomFactory', )
+
 
 class AtomFactory:
     """

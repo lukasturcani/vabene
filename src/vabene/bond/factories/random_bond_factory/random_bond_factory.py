@@ -10,6 +10,8 @@ from .utilities import ValenceTracker
 from ..bond_factory import BondFactory
 from ...bond import Bond
 
+__all__ = ('RandomBondFactory', )
+
 
 class RandomBondFactory(BondFactory):
     """

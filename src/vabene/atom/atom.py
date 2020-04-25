@@ -4,6 +4,8 @@ Atom
 
 """
 
+__all__ = ('Atom', )
+
 
 class Atom:
     """

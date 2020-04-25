@@ -4,6 +4,8 @@ Bond Factory
 
 """
 
+__all__ = ('BondFactory', )
+
 
 class BondFactory:
     """

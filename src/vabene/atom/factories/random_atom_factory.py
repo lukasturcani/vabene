@@ -9,6 +9,8 @@ import itertools as it
 
 from .atom_factory import AtomFactory
 
+__all__ = ('RandomAtomFactory', )
+
 
 class RandomAtomFactory(AtomFactory):
     """

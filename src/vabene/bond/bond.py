@@ -5,6 +5,9 @@ Bond
 """
 
 
+__all__ = ('Bond', )
+
+
 class Bond:
     """
     A bond of a :class:`.Molecule`.
