@@ -114,8 +114,8 @@ yield these atoms
     atoms = tuple(atom_factory.get_atoms())
 
 
-Next, lets create a :class:`.RandomBondFactory`, which force to yield the
-necessary bond, as well as other, random, bonds
+Next, lets create a :class:`.RandomBondFactory`, which is forced to
+yield the necessary bonds, as well as other, random, bonds
 
 
 .. code-block:: python
